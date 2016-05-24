@@ -13,7 +13,7 @@ RUN apk add --no-cache \
         ncurses-libs
 
 ENV PYPY_VERSION="5.1.1" \
-    PYPY_SHA256=""
+    PYPY_SHA256="d6e1ceb2eb715ff73ee1f601cc4ae1264b451d67521ab6c6a6ebe02cc33d24d1"
 # if this is called "PIP_VERSION", pip explodes with "ValueError: invalid truth value '<VERSION>'"
 ENV PYTHON_PIP_VERSION 8.1.2
 

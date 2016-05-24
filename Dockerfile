@@ -19,12 +19,12 @@ ENV PYTHON_PIP_VERSION 8.1.2
 
 RUN set -x \
     && apk add --no-cache curl \
-    && PYPY_FILE="pypy-${PYPY_VERSION}-linux64"
+    && PYPY_FILE="pypy-${PYPY_VERSION}-linux64" \
     && curl -SLO "https://github.com/JayH5/alpine-pypy/releases/download/$PYPY_VERSION/$PYPY_FILE.tar.bz2" \
     && echo "$PYPY_SHA256  $PYPY_FILE.tar.bz2" | sha256sum -c - \
     && tar -xjf "$PYPY_FILE.tar.bz2" \
-    && mv "$PYPY_FILE/*" /usr/local
-    && rm -r "$PYPY_FILE.tar.bz2" "$PYPY_FILE"
+    && mv "$PYPY_FILE"/* /usr/local \
+    && rm -r "$PYPY_FILE.tar.bz2" "$PYPY_FILE" \
     && curl -SL 'https://bootstrap.pypa.io/get-pip.py' | pypy \
     && pip install --upgrade pip==$PYTHON_PIP_VERSION \
     && apk del curl

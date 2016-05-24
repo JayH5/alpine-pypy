@@ -17,7 +17,8 @@ ENV PYPY_VERSION="5.1.1" \
 # if this is called "PIP_VERSION", pip explodes with "ValueError: invalid truth value '<VERSION>'"
 ENV PYTHON_PIP_VERSION 8.1.2
 
-RUN apk add --no-cache curl \
+RUN set -x \
+    && apk add --no-cache curl \
     && PYPY_FILE="pypy-${PYPY_VERSION}-linux64"
     && curl -SLO "https://github.com/JayH5/alpine-pypy/releases/$PYPY_VERSION/$PYPY_FILE.tar.bz2" \
     && echo "$PYPY_SHA256  $PYPY_FILE.tar.bz2" | sha256sum -c - \

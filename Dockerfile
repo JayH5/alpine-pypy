@@ -20,7 +20,7 @@ ENV PYTHON_PIP_VERSION 8.1.2
 RUN set -x \
     && apk add --no-cache curl \
     && PYPY_FILE="pypy-${PYPY_VERSION}-linux64"
-    && curl -SLO "https://github.com/JayH5/alpine-pypy/releases/$PYPY_VERSION/$PYPY_FILE.tar.bz2" \
+    && curl -SLO "https://github.com/JayH5/alpine-pypy/releases/download/$PYPY_VERSION/$PYPY_FILE.tar.bz2" \
     && echo "$PYPY_SHA256  $PYPY_FILE.tar.bz2" | sha256sum -c - \
     && tar -xjf "$PYPY_FILE.tar.bz2" \
     && mv "$PYPY_FILE/*" /usr/local

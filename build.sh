@@ -41,5 +41,6 @@ cd pypy/tool/release
 # We're in a container running as root anyway...
 sed -i 's/--owner=root --group=root//' package.py
 
-./package.py --archive-name pypy-$PYPY_VERSION-linux64
+PYPY_RELEASE_VERSION="${PYPY_RELEASE_VERSION:-$PYPY_VERSION}"
+./package.py --archive-name pypy-$PYPY_RELEASE_VERSION-linux64
 cd $BASE_DIR

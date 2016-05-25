@@ -28,7 +28,7 @@ patch <<EOF
 -        if os.path.isdir(incdirs[0]):
 -            break
 +    incdirs = []
-+    linklibs = ['tcl8.6', 'tkstub8.6']
++    linklibs = ['tcl8.6', 'tk8.6']
 +    libdirs = []
 
  config_ffi = FFI()

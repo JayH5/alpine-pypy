@@ -16,6 +16,7 @@ RUN apk add --no-cache --virtual .build-deps \
         pax-utils \
         readline-dev \
         sqlite-dev \
+        tk \
         tk-dev \
         zlib-dev
 

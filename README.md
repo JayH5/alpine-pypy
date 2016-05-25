@@ -10,8 +10,8 @@ This repository seeks to make it easy to build PyPy for Alpine Linux.
 ## Docker images
 There are 3 Dockerfiles in this repo. Two are for compiling PyPy itself, and the third seeks to be a minimal PyPy image based on Alpine. The images are as follows:
 
-* [`alpine-pypy:python-build`](python-build.dockerfile)): An image to build PyPy from source using cPython.
-* [`alpine-pypy:pypy-build`](pypy-build.dockerfile)): An image to build PyPy from source using an existing PyPy binary.
+* [`alpine-pypy:python-build`](python-build.dockerfile): An image to build PyPy from source using cPython.
+* [`alpine-pypy:pypy-build`](pypy-build.dockerfile): An image to build PyPy from source using an existing PyPy binary.
 * [`alpine-pypy`](Dockerfile): A minimal PyPy Docker image.
 
 ## Building

@@ -7,10 +7,11 @@ ENV LANG C.UTF-8
 
 # PyPy runtime dependencies
 RUN apk add --no-cache \
-        libbz2 \
         expat \
+        libbz2 \
         libffi \
-        ncurses-libs
+        ncurses-libs \
+        sqlite-libs
 
 ENV PYPY_VERSION="5.1.1" \
     PYPY_SHA256="d6e1ceb2eb715ff73ee1f601cc4ae1264b451d67521ab6c6a6ebe02cc33d24d1"

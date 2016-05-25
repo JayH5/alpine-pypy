@@ -22,7 +22,8 @@ RUN apk add --no-cache --virtual .build-deps \
 
 # Download the source
 ENV PYPY_VERSION 5.1.1
-RUN apk add --no-cache curl \
+RUN set -x \
+    && apk add --no-cache curl \
     && curl -fSL "https://bitbucket.org/pypy/pypy/downloads/pypy-$PYPY_VERSION-src.tar.bz2" -o pypy.tar.bz2 \
     && mkdir -p /usr/src \
     && tar -xjC /usr/src -f pypy.tar.bz2 \

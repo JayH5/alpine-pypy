@@ -34,7 +34,7 @@ RUN set -x \
     && rm "$PYPY_FILE.tar.bz2" \
     && apk del curl
 
-RUN ln -s /usr/local/pypy /usr/local/python
+RUN ln -s /usr/local/bin/pypy /usr/local/bin/python
 
 COPY ./build.sh /build.sh
 

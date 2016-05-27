@@ -13,8 +13,8 @@ RUN apk add --no-cache \
         ncurses-libs \
         sqlite-libs
 
-ENV PYPY_VERSION="5.1.1" \
-    PYPY_SHA256="d6e1ceb2eb715ff73ee1f601cc4ae1264b451d67521ab6c6a6ebe02cc33d24d1"
+ENV PYPY_VERSION="5.1.1_1" \
+    PYPY_SHA256="4d1f1b4192e0a6d64df72922bf7d61949130f5d97b18a88cb925da98f13089cd"
 # if this is called "PIP_VERSION", pip explodes with "ValueError: invalid truth value '<VERSION>'"
 ENV PYTHON_PIP_VERSION 8.1.2
 

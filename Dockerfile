@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER Jamie Hewland <jhewland@gmail.com>
 
 # http://bugs.python.org/issue19846

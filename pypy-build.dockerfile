@@ -25,7 +25,7 @@ ENV PYPY_VERSION="5.3.0" \
     PYPY_SHA256="4142eb8f403810bc88a4911792bb5a502e152df95806e33e69050c828cd160d5"
 RUN set -x \
     && apk add --no-cache curl \
-    && PYPY_FILE="pypy-${PYPY_VERSION}-src" \
+    && PYPY_FILE="pypy2-v${PYPY_VERSION}-src" \
     && curl -SLO "https://bitbucket.org/pypy/pypy/downloads/$PYPY_FILE.tar.bz2" \
     && echo "$PYPY_SHA256  $PYPY_FILE.tar.bz2" | sha256sum -c - \
     && mkdir -p /usr/src \

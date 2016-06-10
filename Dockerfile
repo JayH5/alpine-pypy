@@ -13,14 +13,14 @@ RUN apk add --no-cache \
         ncurses-libs \
         sqlite-libs
 
-ENV PYPY_VERSION="5.1.1_1" \
-    PYPY_SHA256="4d1f1b4192e0a6d64df72922bf7d61949130f5d97b18a88cb925da98f13089cd"
+ENV PYPY_VERSION="5.3.0" \
+    PYPY_SHA256="3de8b074b2022bf92f4038e83af934e6aa3a57e198976292c0320e85c3882922"
 # if this is called "PIP_VERSION", pip explodes with "ValueError: invalid truth value '<VERSION>'"
 ENV PYTHON_PIP_VERSION 8.1.2
 
 RUN set -x \
     && apk add --no-cache curl \
-    && PYPY_FILE="pypy-${PYPY_VERSION}-linux64" \
+    && PYPY_FILE="pypy2-v${PYPY_VERSION}-linux64" \
     && curl -SLO "https://github.com/JayH5/alpine-pypy/releases/download/$PYPY_VERSION/$PYPY_FILE.tar.bz2" \
     && echo "$PYPY_SHA256  $PYPY_FILE.tar.bz2" | sha256sum -c - \
     && tar -xjf "$PYPY_FILE.tar.bz2" \

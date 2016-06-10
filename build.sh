@@ -42,5 +42,5 @@ cd pypy/tool/release
 sed -i 's/--owner=root --group=root//' package.py
 
 PYPY_RELEASE_VERSION="${PYPY_RELEASE_VERSION:-$PYPY_VERSION}"
-./package.py --archive-name pypy-$PYPY_RELEASE_VERSION-linux64
+./package.py --archive-name pypy2-v$PYPY_RELEASE_VERSION-linux64
 cd $BASE_DIR

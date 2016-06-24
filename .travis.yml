@@ -1,0 +1,35 @@
+sudo: required
+language: python
+services:
+  - docker
+
+env:
+  global:
+    - REGISTRY_USER=jamiehewland
+    - secure: "4qDsmFNSiMYOmAsDugOEsTxOJIszKtMUqiymNWsWyNq1MYDRsRzILtfAAxHo1V6Bva2JfCKwQu6PRu53kW6SvgIZhtcVD33qx/fhGGXa4izZO3E2znSLJ2x15iO8Py/4OHkMWEG+y/HLh4sDWhEQEM25mGrcYywc0iBIWnmezQ2yOH2ow3MlMTQ+Eu3vDWmD4CyDJU/fmAx9rU38xzYK1mksiSgjPC0xsM3ZLsbIiEXXhTZzgwJvrBfVaEMosO2ZI3dYeVEe0v0eaMPT9Sh2prQqsNUJrIWQQpzLQB4g/ORUddj96LbJ0lplsJgJ9f86xN0F4wEoc0aEea8tSMjXEnxatQi4nwXRXm0HbC2K4/rMqqTbn5PBi3pMtS4k02lxvysJyaaaMc0cjE4ZiQsSPlYEmxet1gaJbM+PGDCvvTfuPaDTwbWWZLslHkxdriAZhI5pKl2++hjm1/HP88cY1YWOIBW7fW+wawyApATfznPKVzdoyLapHc+hLsVVU/rB8QHTWMEjpLAGVjZpHwYYyidZngbIAnzRxBt0LyJJnHSO5jGgIrtkgJbtwdCgNVaAGCcZ9a+bwQWNuSxPC2d4tLufpqbMEXMujKG3YPyrQ6/80MRqdKa1TBZwwnsOWfjSwZe+7i9wxBz1gR6KegLMOCuMAslcCxA+BoaezH2cbPY="
+  matrix:
+    - VERSION=2 VARIANT=
+    - VERSION=2 VARIANT=bootstrap
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -o Dpkg::Options::="--force-confold" -y docker-engine
+
+before_script:
+  - cd "$VERSION"
+  - image="$REGISTRY_USER/alpine-pypy-build:$VERSION${VARIANT:+-$VARIANT}"
+  - if [[ -n "$VARIANT" ]]; then dockerfile_opt="-f $VARIANT.dockerfile"; fi
+
+script:
+  - docker build -t "$image" $dockerfile_opt .
+
+after_script:
+  - docker images
+
+before_deploy:
+  - pip install docker-ci-deploy
+deploy:
+  provider: script
+  script: ./deploy.sh
+  on:
+    branch: develop

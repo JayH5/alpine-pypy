@@ -1,4 +1,4 @@
-FROM jamiehewland/alpine-pypy:5.1.1_1
+FROM jamiehewland/alpine-pypy:2-5.3.0
 MAINTAINER Jamie Hewland <jhewland@gmail.com>
 
 # Add build dependencies

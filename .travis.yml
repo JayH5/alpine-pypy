@@ -27,6 +27,7 @@ after_script:
   - docker images
 
 before_deploy:
+  - cd "$TRAVIS_BUILD_DIR"
   - pip install docker-ci-deploy
 deploy:
   provider: script

@@ -1,4 +1,4 @@
-FROM python:2.7.11-alpine
+FROM python:2.7.12-alpine
 MAINTAINER Jamie Hewland <jhewland@gmail.com>
 
 # Add build dependencies

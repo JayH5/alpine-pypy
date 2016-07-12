@@ -7,7 +7,6 @@ RUN apk add --no-cache --virtual .build-deps \
         expat-dev \
         gcc \
         gdbm-dev \
-        libbz2 \
         libc-dev \
         libffi-dev \
         linux-headers \

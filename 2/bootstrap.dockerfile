@@ -30,9 +30,8 @@ RUN set -x \
     && PYPY_FILE="pypy2-v${PYPY_VERSION}-src" \
     && curl -SLO "https://bitbucket.org/pypy/pypy/downloads/$PYPY_FILE.tar.bz2" \
     && echo "$PYPY_SHA256  $PYPY_FILE.tar.bz2" | sha256sum -c - \
-    && mkdir -p /usr/src \
-    && tar -xjC /usr/src -f "$PYPY_FILE.tar.bz2" \
-    && mv "/usr/src/$PYPY_FILE" /usr/src/pypy \
+    && mkdir -p /usr/src/pypy \
+    && tar -xjC /usr/src/pypy --strip-components=1 -f "$PYPY_FILE.tar.bz2" \
     && rm "$PYPY_FILE.tar.bz2" \
     && apk del curl
 

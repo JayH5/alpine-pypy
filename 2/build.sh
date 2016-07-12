@@ -37,10 +37,6 @@ EOF
 cd $BASE_DIR
 
 cd pypy/tool/release
-# Workaround for Busybox's tar not being very featureful
-# We're in a container running as root anyway...
-sed -i 's/--owner=root --group=root//' package.py
-
 PYPY_RELEASE_VERSION="${PYPY_RELEASE_VERSION:-$PYPY_VERSION}"
 ./package.py --archive-name pypy2-v$PYPY_RELEASE_VERSION-linux64
 cd $BASE_DIR

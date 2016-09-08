@@ -22,8 +22,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev
 
 # Download the source
-ENV PYPY_VERSION="5.4.0" \
-    PYPY_SHA256="d9568ebe9a14d0eaefde887d78f3cba63d665e95c0d234bb583932341f55a655"
+ENV PYPY_VERSION="5.4.1" \
+    PYPY_SHA256="45dbc50c81498f6f1067201b8fc887074b43b84ee32cc47f15e7db17571e9352"
 RUN set -x \
     && apk add --no-cache curl \
     && PYPY_FILE="pypy2-v${PYPY_VERSION}-src" \

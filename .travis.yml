@@ -10,6 +10,8 @@ env:
   matrix:
     - VERSION=2 VARIANT=
     - VERSION=2 VARIANT=bootstrap
+    - VERSION=3 VARIANT=
+    - VERSION=3 VARIANT=bootstrap
 
 before_install:
   - sudo apt-get update

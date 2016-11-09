@@ -57,6 +57,7 @@ patch <<EOF
 +    incdirs = []
 +    linklibs = ['tcl8.6', 'tk8.6']
 +    libdirs = []
+
  config_ffi = FFI()
  config_ffi.cdef("""
 EOF

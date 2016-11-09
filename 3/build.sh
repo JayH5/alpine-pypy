@@ -10,6 +10,29 @@ cd $BASE_DIR
 # on Python 3 but the rPython code is not Python 3 compatible).
 sed -i 's/os.confstr(rthread.CS_GNU_LIBPTHREAD_VERSION)/"NPTL"/' pypy/module/sys/system.py
 
+# Hack for stdin/stdout/stderr being const in musl
+cd rpython/rlib
+patch <<EOF
+--- rfile.py	2016-10-08 22:52:00.000000000 +0200
++++ rfile.py	2016-11-09 15:34:28.000000000 +0200
+@@ -106,11 +106,11 @@
+ c_ferror = llexternal('ferror', [FILEP], rffi.INT)
+ c_clearerr = llexternal('clearerr', [FILEP], lltype.Void)
+
+-c_stdin = rffi.CExternVariable(FILEP, 'stdin', eci, c_type='FILE*',
++c_stdin = rffi.CExternVariable(FILEP, 'stdin', eci, c_type='FILE *const',
+                                getter_only=True)
+-c_stdout = rffi.CExternVariable(FILEP, 'stdout', eci, c_type='FILE*',
++c_stdout = rffi.CExternVariable(FILEP, 'stdout', eci, c_type='FILE *const',
+                                 getter_only=True)
+-c_stderr = rffi.CExternVariable(FILEP, 'stderr', eci, c_type='FILE*',
++c_stderr = rffi.CExternVariable(FILEP, 'stderr', eci, c_type='FILE *const',
+                                 getter_only=True)
+
+
+EOF
+cd $BASE_DIR
+
 cd pypy/goal
 python ../../rpython/bin/rpython --opt=jit
 cd $BASE_DIR

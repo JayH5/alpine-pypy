@@ -6,6 +6,10 @@ cd $BASE_DIR
 
 # Translation
 # ===========
+# Hack for missing confstr values when running Python 2 on musl (not necessary
+# on Python 3 but the rPython code is not Python 3 compatible).
+sed -i 's/os.confstr(rthread.CS_GNU_LIBPTHREAD_VERSION)/3/' pypy/module/sys/system.py
+
 cd pypy/goal
 python ../../rpython/bin/rpython --opt=jit
 cd $BASE_DIR
@@ -36,10 +40,6 @@ EOF
 cd $BASE_DIR
 
 cd pypy/tool/release
-# Workaround for Busybox's tar not being very featureful
-# We're in a container running as root anyway...
-sed -i 's/--owner=root --group=root//' package.py
-
 PYPY_RELEASE_VERSION="${PYPY_RELEASE_VERSION:-$PYPY_VERSION}"
 ./package.py --archive-name pypy3.3-v$PYPY_RELEASE_VERSION-linux64
 cd $BASE_DIR

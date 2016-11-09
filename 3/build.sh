@@ -8,7 +8,7 @@ cd $BASE_DIR
 # ===========
 # Hack for missing confstr values when running Python 2 on musl (not necessary
 # on Python 3 but the rPython code is not Python 3 compatible).
-sed -i 's/os.confstr(rthread.CS_GNU_LIBPTHREAD_VERSION)/3/' pypy/module/sys/system.py
+sed -i 's/os.confstr(rthread.CS_GNU_LIBPTHREAD_VERSION)/"NPTL"/' pypy/module/sys/system.py
 
 cd pypy/goal
 python ../../rpython/bin/rpython --opt=jit

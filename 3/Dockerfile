@@ -35,6 +35,9 @@ RUN set -x \
     && rm "$PYPY_FILE.tar.bz2" \
     && apk del curl
 
+# Make sure PyPy is available as 'python' and is used ahead of the OS Python
+RUN ln -s /usr/local/bin/pypy /usr/local/bin/python
+
 COPY ./build.sh /build.sh
 
 VOLUME /tmp

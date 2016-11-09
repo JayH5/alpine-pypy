@@ -48,6 +48,10 @@ docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2
 ## Notes on building PyPy on Alpine Linux
 There are a few workarounds for differences between Alpine Linux and the Debian-based Linux distributions that the PyPy team has thus far worked against.
 
+### Issues when building all versions of PyPy
 * The standard Python package currently in the Alpine package repositories has an issue that prevents PyPy from compiling. The `alpine-pypy-build:2-bootstrap` image is based on the [`python:2-alpine`](https://hub.docker.com/_/python/) Docker image which instead builds Python from source.
 * The tk/tcl libraries for Alpine have slightly non-standard names and paths. The PyPy script for building the CFFI bindings for tk in the Python standard library have a very simplistic way of looking up library locations. We instead patch that script to point to the correct files. It's also easy to switch off the compilation of the tk bindings completely by setting the `PYPY_PACKAGE_WITHOUTTK` environment variable to any value.
-* When building the Python 3 flavour of PyPy (currently "PyPy3.3"), the build process checks for the value of a certain [`confstr`](http://man7.org/linux/man-pages/man3/confstr.3.html): `_CS_GNU_LIBPTHREAD_VERSION`. Unfortunately, this is a GNU thing and isn't present in Alpine Linux. We replace (`sed`) the `os.confstr()` lookup in the PyPy build process with the value `"NPTL"`, which is used to build OpenJDK on Alpine Linux [here](https://github.com/alpinelinux/aports/blob/master/community/openjdk8/icedtea-hotspot-uclibc-fixes.patch). :-/
+
+### Issues when building PyPy for Python 3
+* The build process checks for the value of a certain [`confstr`](http://man7.org/linux/man-pages/man3/confstr.3.html): `_CS_GNU_LIBPTHREAD_VERSION`. Unfortunately, this is a GNU thing and isn't present in Alpine Linux. We replace (`sed`) the `os.confstr()` lookup in the PyPy build process with the value `"NPTL"`, which is used to build OpenJDK on Alpine Linux [here](https://github.com/alpinelinux/aports/blob/master/community/openjdk8/icedtea-hotspot-uclibc-fixes.patch). :-/
+* RPython expects the `stdin`/`stdout`/`stderr` file handles in `stdio.h` of the standard libc to be of type `FILE*`. With musl these are of type `FILE *const` rather. We patch RPython with the correct type.

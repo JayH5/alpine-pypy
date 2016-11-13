@@ -13,3 +13,5 @@
 -c_stderr = rffi.CExternVariable(FILEP, 'stderr', eci, c_type='FILE*',
 +c_stderr = rffi.CExternVariable(FILEP, 'stderr', eci, c_type='FILE *const',
                                  getter_only=True)
+
+

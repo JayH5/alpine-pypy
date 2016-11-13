@@ -1,4 +1,4 @@
-FROM jamiehewland/alpine-pypy:2-5.4.0
+FROM jamiehewland/alpine-pypy:2-5.4.0-slim
 MAINTAINER Jamie Hewland <jhewland@gmail.com>
 
 # Add build dependencies
@@ -34,11 +34,12 @@ RUN set -x \
     && rm "$PYPY_FILE.tar.bz2" \
     && apk del curl
 
-RUN ln -s /usr/local/bin/pypy /usr/local/bin/python
+WORKDIR /usr/src/pypy
 
-COPY ./build.sh /build.sh
+COPY patches /patches
+RUN for patch in /patches/*.patch; do patch -p0 -E -i "$patch"; done
+
+COPY build.sh /build.sh
+CMD ["/build.sh"]
 
 VOLUME /tmp
-
-WORKDIR /usr/src/pypy
-CMD ["/build.sh"]

@@ -35,9 +35,12 @@ RUN set -x \
     && rm "$PYPY_FILE.tar.bz2" \
     && apk del curl
 
+WORKDIR /usr/src/pypy
+
+COPY patches /patches
+RUN for patch in /patches/*.patch; do patch -p0 -E -i "$patch"; done
+
 COPY ./build.sh /build.sh
+CMD ["/build.sh"]
 
 VOLUME /tmp
-
-WORKDIR /usr/src/pypy
-CMD ["/build.sh"]

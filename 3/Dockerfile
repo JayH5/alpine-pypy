@@ -35,12 +35,12 @@ RUN set -x \
     && rm "$PYPY_FILE.tar.bz2" \
     && apk del curl
 
-# Make sure PyPy is available as 'python' and is used ahead of the OS Python
-RUN ln -s /usr/local/bin/pypy /usr/local/bin/python
+WORKDIR /usr/src/pypy
 
-COPY ./build.sh /build.sh
+COPY patches /patches
+RUN for patch in /patches/*.patch; do patch -p0 -E -i "$patch"; done
+
+COPY build.sh /build.sh
+CMD ["/build.sh"]
 
 VOLUME /tmp
-
-WORKDIR /usr/src/pypy
-CMD ["/build.sh"]

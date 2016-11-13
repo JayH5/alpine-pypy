@@ -1,0 +1,12 @@
+--- pypy/module/sys/system.py
++++ pypy/module/sys/system.py
+@@ -95,8 +95,7 @@
+         w_lock = space.wrap("semaphore" if rthread.USE_SEMAPHORES
+                             else "mutex+cond")
+         if rthread.CS_GNU_LIBPTHREAD_VERSION is not None:
+-            w_version = space.wrap(
+-                os.confstr(rthread.CS_GNU_LIBPTHREAD_VERSION))
++            w_version = space.wrap("NPTL")
+         else:
+             w_version = space.w_None
+     else:

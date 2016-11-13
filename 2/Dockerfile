@@ -1,4 +1,4 @@
-FROM jamiehewland/alpine-pypy:2-5.4.0-slim
+FROM jamiehewland/alpine-pypy:2-5.4.1-slim
 MAINTAINER Jamie Hewland <jhewland@gmail.com>
 
 # Add build dependencies
@@ -22,8 +22,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev
 
 # Download the source
-ENV PYPY_VERSION="5.4.1" \
-    PYPY_SHA256="45dbc50c81498f6f1067201b8fc887074b43b84ee32cc47f15e7db17571e9352"
+ENV PYPY_VERSION="5.6.0" \
+    PYPY_SHA256="7411448045f77eb9e087afdce66fe7eafda1876c9e17aad88cf891f762b608b0"
 RUN set -x \
     && apk add --no-cache curl \
     && PYPY_FILE="pypy2-v${PYPY_VERSION}-src" \

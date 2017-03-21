@@ -1,5 +1,5 @@
-FROM python:2.7.12-alpine
-MAINTAINER Jamie Hewland <jhewland@gmail.com>
+FROM python:2.7.13-alpine
+LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies
 RUN apk add --no-cache --virtual .build-deps \

@@ -35,6 +35,6 @@ before_deploy:
   - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 deploy:
   provider: script
-  script: dcd --tag-version "$version" --tag-latest "$image"
+  script: dcd --tag "$VERSION${VARIANT:+-$VARIANT}" "$VERSION-$version${VARIANT:+-$VARIANT}" "$image"
   on:
     branch: develop

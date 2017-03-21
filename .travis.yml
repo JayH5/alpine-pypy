@@ -18,21 +18,23 @@ before_install:
   - sudo apt-get install -o Dpkg::Options::="--force-confold" -y docker-engine
 
 before_script:
-  - cd "$VERSION"
-  - image="$REGISTRY_USER/alpine-pypy-build:$VERSION${VARIANT:+-$VARIANT}"
-  - if [[ -n "$VARIANT" ]]; then dockerfile_opt="-f $VARIANT.dockerfile"; fi
+  - image="$REGISTRY_USER/alpine-pypy-build${VARIANT:+:$VARIANT}"
+  - dockerfile="${VARIANT:+$VARIANT.dockerfile}"; dockerfile="$VERSION/${dockerfile:-Dockerfile}"
+  - version="$(sed -n 's/.*PYPY_VERSION="\(.*\)".*/\1/p' "$dockerfile")"
+  - echo "Building image '$image' from Dockerfile at $dockerfile with version '$version'"
+  - docker pull "$image" || true
 
 script:
-  - docker build -t "$image" $dockerfile_opt .
+  - docker build --pull --cache-from "$image" -t "$image" -f "$dockerfile" "$VERSION"
 
 after_script:
   - docker images
 
 before_deploy:
-  - cd "$TRAVIS_BUILD_DIR"
   - pip install docker-ci-deploy
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 deploy:
   provider: script
-  script: ./deploy.sh
+  script: dcd --tag-version "$version" --tag-latest "$image"
   on:
     branch: develop

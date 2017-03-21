@@ -18,7 +18,7 @@ before_install:
   - sudo apt-get install -o Dpkg::Options::="--force-confold" -y docker-engine
 
 before_script:
-  - image="$REGISTRY_USER/alpine-pypy-build${VARIANT:+:$VARIANT}"
+  - image="$REGISTRY_USER/alpine-pypy-build:$VERSION${VARIANT:+-$VARIANT}"
   - dockerfile="${VARIANT:+$VARIANT.dockerfile}"; dockerfile="$VERSION/${dockerfile:-Dockerfile}"
   - version="$(sed -n 's/.*PYPY_VERSION="\(.*\)".*/\1/p' "$dockerfile")"
   - echo "Building image '$image' from Dockerfile at $dockerfile with version '$version'"

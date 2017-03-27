@@ -4,7 +4,7 @@ set -ex
 BASE_DIR="/usr/src/pypy"
 PYTHON="$(which pypy || which python)"
 
-PYPY_NAME="pypy3.3"
+PYPY_NAME="pypy3"
 PYPY_RELEASE_VERSION="${PYPY_RELEASE_VERSION:-$PYPY_VERSION}"
 PYPY_ARCH="linux64"
 

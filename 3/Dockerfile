@@ -23,8 +23,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev
 
 # Download the source
-ENV PYPY_VERSION="5.7.0" \
-    PYPY_SHA256="f0f563b74f8b82ec33b022393219b93cc0d81e9f9500614fe8417b67a52e9569"
+ENV PYPY_VERSION="5.7.1" \
+    PYPY_SHA256="40ece0145282980ac121390f13709404c0532896507d5767496381180b631bd0"
 RUN set -x \
     && apk add --no-cache curl \
     && PYPY_FILE="pypy3-v${PYPY_VERSION}-src" \

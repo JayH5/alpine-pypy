@@ -23,7 +23,7 @@ RUN apk add --no-cache --virtual .build-deps \
 
 # Download the source
 ENV PYPY_VERSION 5.8.0
-ENV PYPY_SHA256SUM ec1e34cc81a7f4086135bab29dcbe61d19fcd8d9d8fc1b149bea8373f94fd958
+ENV PYPY_SHA256SUM 504c2d522595baf8775ae1045a217a2b120732537861d31b889d47c340b58bd5
 
 RUN set -ex; \
     apk add --no-cache wget; \

@@ -21,7 +21,7 @@ before_script:
   - cd "$VERSION"
   - image="$REGISTRY_USER/alpine-pypy-build:$VERSION${VARIANT:+-$VARIANT}"
   - dockerfile="${VARIANT:+$VARIANT.dockerfile}"; dockerfile="${dockerfile:-Dockerfile}"
-  - version="$VERSION-$(awk '$2 == "PYPY_VERSION" { print $3; exit }' Dockerfile)"
+  - version="$(awk '$2 == "PYPY_VERSION" { print $3; exit }' Dockerfile)"
   - echo "Building image '$image' from Dockerfile at $dockerfile with version '$version'"
   - docker pull "$image" || true
 

@@ -1,4 +1,4 @@
-FROM jamiehewland/alpine-pypy:2-5.7.0-slim
+FROM jamiehewland/alpine-pypy:2-5.7.1-slim
 LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies
@@ -22,8 +22,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev
 
 # Download the source
-ENV PYPY_VERSION="5.7.1" \
-    PYPY_SHA256="d01bee43c6df79f7bbc1149bb3e85f489491fb2358a6a1f9a7f0d6e07715832f"
+ENV PYPY_VERSION="5.8.0" \
+    PYPY_SHA256="ec1e34cc81a7f4086135bab29dcbe61d19fcd8d9d8fc1b149bea8373f94fd958"
 RUN set -xe; \
     apk add --no-cache wget; \
     wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy2-v${PYPY_VERSION}-src.tar.bz2"; \

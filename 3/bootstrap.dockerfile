@@ -23,8 +23,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev
 
 # Download the source
-ENV PYPY_VERSION="5.7.1" \
-    PYPY_SHA256="40ece0145282980ac121390f13709404c0532896507d5767496381180b631bd0"
+ENV PYPY_VERSION="5.8.0" \
+    PYPY_SHA256="9d090127335c3c0fd2b14c8835bf91752e62756e55ea06aad3353f24a6854223"
 RUN set -xe; \
     apk add --no-cache wget; \
     wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy3-v${PYPY_VERSION}-src.tar.bz2"; \

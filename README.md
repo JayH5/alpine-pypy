@@ -1,6 +1,6 @@
 # alpine-pypy
 
-[![Build Status](https://img.shields.io/travis/JayH5/alpine-pypy/develop.svg)](https://travis-ci.org/JayH5/alpine-pypy)
+[![Build Status](https://img.shields.io/travis/JayH5/alpine-pypy/master.svg)](https://travis-ci.org/JayH5/alpine-pypy)
 
 Docker-based builds for [PyPy](http://pypy.org) on [Alpine Linux](http://www.alpinelinux.org).
 

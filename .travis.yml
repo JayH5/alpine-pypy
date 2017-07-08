@@ -13,10 +13,6 @@ env:
     - VERSION=3 VARIANT=
     - VERSION=3 VARIANT=bootstrap
 
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install -o Dpkg::Options::="--force-confold" -y docker-engine
-
 before_script:
   - cd "$VERSION"
   - image="$REGISTRY_USER/alpine-pypy-build:$VERSION${VARIANT:+-$VARIANT}"
@@ -38,4 +34,4 @@ deploy:
   provider: script
   script: dcd --tag "$VERSION${VARIANT:+-$VARIANT}" "$VERSION-$version${VARIANT:+-$VARIANT}" -- "$image"
   on:
-    branch: develop
+    branch: master

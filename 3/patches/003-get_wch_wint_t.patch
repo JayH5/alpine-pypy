@@ -7,8 +7,8 @@
 Fix for get_wch() on platforms where wint_t != int
 
 diff --git a/lib_pypy/_curses.py b/lib_pypy/_curses.py
---- lib_pypy/_curses.py
-+++ lib_pypy/_curses.py
+--- a/lib_pypy/_curses.py
++++ b/lib_pypy/_curses.py
 @@ -404,7 +404,7 @@
          return val
  

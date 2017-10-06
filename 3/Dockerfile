@@ -1,4 +1,4 @@
-FROM jamiehewland/alpine-pypy:2-5.8.0-slim
+FROM jamiehewland/alpine-pypy:2-5.9.0-slim
 LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies
@@ -9,10 +9,10 @@ RUN apk add --no-cache --virtual .build-deps \
         gdbm-dev \
         libc-dev \
         libffi-dev \
+        libressl-dev \
         linux-headers \
         make \
         ncurses-dev \
-        openssl-dev \
         pax-utils \
         readline-dev \
         sqlite-dev \

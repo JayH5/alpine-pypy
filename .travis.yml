@@ -3,6 +3,10 @@ language: python
 services:
   - docker
 
+branches:
+  only:
+    - master
+
 env:
   global:
     - REGISTRY_USER=jamiehewland

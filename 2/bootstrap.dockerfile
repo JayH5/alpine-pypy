@@ -21,6 +21,8 @@ RUN apk add --no-cache --virtual .build-deps \
         tk-dev \
         zlib-dev
 
+RUN pip install --no-cache-dir pycparser
+
 # Download the source
 ENV PYPY_VERSION 5.9.0
 ENV PYPY_SHA256SUM de4bf05df47f1349dbac97233d9277bbaf1ef3331663ea2557fd5da3dbcfd0a7

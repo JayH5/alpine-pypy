@@ -37,6 +37,12 @@ RUN set -ex; \
 
 WORKDIR /usr/src/pypy
 
+COPY patches /patches
+RUN set -ex; \
+    for patch in /patches/*.patch; do \
+        patch -p0 -E -i "$patch"; \
+    done
+
 COPY ./build.sh /build.sh
 CMD ["/build.sh"]
 

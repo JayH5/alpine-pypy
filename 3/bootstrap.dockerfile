@@ -1,4 +1,4 @@
-FROM python:2.7.14-alpine
+FROM python:2.7.14-alpine3.6
 LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies
@@ -12,7 +12,7 @@ RUN apk add --no-cache --virtual .build-deps \
         linux-headers \
         make \
         ncurses-dev \
-        openssl-dev \
+        libressl-dev \
         pax-utils \
         readline-dev \
         sqlite-dev \
@@ -21,6 +21,8 @@ RUN apk add --no-cache --virtual .build-deps \
         tk-dev \
         xz-dev \
         zlib-dev
+
+RUN pip install --no-cache-dir pycparser
 
 # Download the source
 ENV PYPY_VERSION 5.9.0

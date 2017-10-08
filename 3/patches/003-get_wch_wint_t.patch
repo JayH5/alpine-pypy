@@ -1,0 +1,20 @@
+# HG changeset patch
+# User Armin Rigo <arigo@tunes.org>
+# Date 1507291343 -7200
+# Branch py3.5
+# Node ID 8103736dfa9f32823d8659fab273613d5a1bc81f
+# Parent  31a461517920ff23d2da67d6e23e36fe58044f40
+Fix for get_wch() on platforms where wint_t != int
+
+diff --git a/lib_pypy/_curses.py b/lib_pypy/_curses.py
+--- a/lib_pypy/_curses.py
++++ b/lib_pypy/_curses.py
+@@ -404,7 +404,7 @@
+         return val
+ 
+     def get_wch(self, *args):
+-        wch = ffi.new("int[1]")
++        wch = ffi.new("wint_t[1]")
+         if len(args) == 0:
+             val = lib.wget_wch(self._win, wch)
+         elif len(args) == 2:

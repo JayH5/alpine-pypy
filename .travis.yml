@@ -20,7 +20,7 @@ before_script:
   - cd "$VERSION"
   - dockerfile="${VARIANT:+$VARIANT/}Dockerfile"
   - version="$(awk '$2 == "PYPY_VERSION" { print $3; exit }' "$dockerfile")"
-  - image="$IMAGE_NAME:${VERSION#*/}-$version${VARIANT:+-$VARIANT}-${VERSION%/*}"
+  - image="$IMAGE_NAME:${VERSION%/*}-$version${VARIANT:+-$VARIANT}-${VERSION#*/}"
   - echo "Building image '$image' from Dockerfile at $dockerfile"
   - docker pull "$image" || true
 

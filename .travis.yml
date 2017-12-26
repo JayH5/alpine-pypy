@@ -9,24 +9,26 @@ branches:
 
 env:
   global:
-    - REGISTRY_USER=jamiehewland
+    - IMAGE_NAME=jamiehewland/alpine-pypy-build
     - secure: "DCHokMpVW2tZFOD33RaH2Z768FTdyYh+j08CTRp7XRg2NIZf/NQacxchUM3xmsb711wEag10m06I3lBk3oBuea/KfmY2gowx1ThzoaZ27hAoDIGwfeem3atgbOEweCGMsxrsPmIXDwKfiJiZ30G8n4uz+uQEi0PS7tO4vIitryvld0ssOJyMMKei+bAv6KqLhIE8dwAiRnXbgQ9mW6mM7cb9tlL17Eu6n/pX+bR4M3qkoH7qGlHhM15EzszEUjN6g7oLxZKK9yABjVt0XxQfbwbBLf9yKgNhBRnkjZUlcNvDIS5hCFh/d6TW4q+zLJy6PpBKL83V80RDimm+JnkfcWKEDwLAfEmb1dpqIjQ4Id0Rp9v/3XobvyhYLNtzCMk8Qoly6hOkLTbbKgWuWN2d51ASxJ6iLswTjcKIkOPAbTdXV0QMgGfa7vjdgDrxLyVTaxYBk4BAIfGkWU01Oq4FMNHuPCr/fQKtWEvSVBXi7BRw1QviOScOr8eUc/QU+iawH+7WkScQLFnIsxO8yoXpdlmmQnKSTBk0KUS9DmBqYOYnyU1yPagq7/sdNBfKmgfV+rGhszPOw7I14SG08ApwWLuiauv7DRReeeoPX4oYjyRQr7Ue2rK3Igh4vDGJwxeXzqDx9hS9zNlV4xl2KWSDxxdIKZmE5SOiWXojCxiT+LY="
   matrix:
-    - VERSION=2 VARIANT=
-    - VERSION=2 VARIANT=bootstrap
-    - VERSION=3 VARIANT=
-    - VERSION=3 VARIANT=bootstrap
+    - PYPY_VERSION=2 ALPINE_VERSION=3.6 VARIANT=          VERSION_LATEST=
+    - PYPY_VERSION=2 ALPINE_VERSION=3.6 VARIANT=bootstrap VERSION_LATEST=
+    - PYPY_VERSION=3 ALPINE_VERSION=3.6 VARIANT=          VERSION_LATEST=1
+    - PYPY_VERSION=3 ALPINE_VERSION=3.6 VARIANT=bootstrap VERSION_LATEST=1
 
 before_script:
-  - cd "$VERSION"
-  - image="$REGISTRY_USER/alpine-pypy-build:$VERSION${VARIANT:+-$VARIANT}"
-  - dockerfile="${VARIANT:+$VARIANT.dockerfile}"; dockerfile="${dockerfile:-Dockerfile}"
-  - version="$(awk '$2 == "PYPY_VERSION" { print $3; exit }' Dockerfile)"
+  - cd "$PYPY_VERSION"
+  - image="$IMAGE_NAME:$PYPY_VERSION${VARIANT:+-$VARIANT}-alpine$ALPINE_VERSION"
+  - dockerfile="alpine$ALPINE_VERSION/${VARIANT:+$VARIANT/}Dockerfile"
+  - version="$(awk '$2 == "PYPY_VERSION" { print $3; exit }' "$dockerfile")"
   - echo "Building image '$image' from Dockerfile at $dockerfile with version '$version'"
   - docker pull "$image" || true
 
 script:
   - docker build --pull --cache-from "$image" -t "$image" -f "$dockerfile" .
+  - pip install docker-ci-deploy==0.3.0
+  - dcd --version "$PYPY_VERSION-$version" --version-semver ${VERSION_LATEST:+--version-latest} --dry-run "$image"
 
 after_script:
   - docker images
@@ -36,6 +38,6 @@ before_deploy:
   - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 deploy:
   provider: script
-  script: dcd --tag "$VERSION${VARIANT:+-$VARIANT}" "$VERSION-$version${VARIANT:+-$VARIANT}" -- "$image"
+  script: dcd --version "$PYPY_VERSION-$version" --version-semver ${VERSION_LATEST:+--version-latest} "$image"
   on:
     branch: master

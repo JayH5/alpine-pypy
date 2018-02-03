@@ -8,6 +8,10 @@ PYPY_NAME="pypy3"
 PYPY_RELEASE_VERSION="${PYPY_RELEASE_VERSION:-$PYPY_VERSION}"
 PYPY_ARCH="linux64-alpine$(cut -d. -f1,2 /etc/alpine-release)"
 
+# set thread stack size to 1MB so we don't segfault before we hit sys.getrecursionlimit()
+# https://github.com/alpinelinux/aports/commit/2026e1259422d4e0cf92391ca2d3844356c649d0
+export CFLAGS="-DTHREAD_STACK_SIZE=0x100000 $CFLAGS"
+
 # Translation
 cd "$BASE_DIR"/pypy/goal
 "$PYTHON" ../../rpython/bin/rpython --opt=jit

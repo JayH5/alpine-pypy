@@ -1,0 +1,10 @@
+--- a/lib_pypy/_curses_build.py
++++ b/lib_pypy/_curses_build.py
+@@ -37,6 +37,7 @@
+ #include <ncurses.h>
+ #include <panel.h>
+ #include <term.h>
++#include <wchar.h>
+
+ #if defined STRICT_SYSV_CURSES
+ #define _m_STRICT_SYSV_CURSES TRUE

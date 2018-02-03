@@ -22,8 +22,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev
 
 # Download the source
-ENV PYPY_VERSION 5.9.0
-ENV PYPY_SHA256SUM de4bf05df47f1349dbac97233d9277bbaf1ef3331663ea2557fd5da3dbcfd0a7
+ENV PYPY_VERSION 5.10.0
+ENV PYPY_SHA256SUM 1209f2db718e6afda17528baa5138177a14a0938588a7d3e1b7c722c483079a8
 
 RUN set -ex; \
     apk add --no-cache wget; \

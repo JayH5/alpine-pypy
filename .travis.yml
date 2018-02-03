@@ -1,5 +1,6 @@
 sudo: required
 group: trusty_latest
+language: bash
 services: docker
 
 branches:

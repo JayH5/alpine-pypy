@@ -2,7 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/JayH5/alpine-pypy/master.svg)](https://travis-ci.org/JayH5/alpine-pypy)
 
-> **Note:** As of PyPy 5.9.0, these builds use Alpine 3.6, rather than Alpine 3.4. The builds for Alpine 3.6 are not compatible with Alpine 3.4.
+> *Note:* New builds/images of PyPy will use the latest Alpine Linux release available as of the release of that version of PyPy. The Alpine Linux version will be included in the name of the built archive going forward. Also, new Docker images will be released only with the full PyPy and Alpine Linux versions included in the tag.
 
 Docker-based builds for [PyPy](http://pypy.org) on [Alpine Linux](http://www.alpinelinux.org).
 
@@ -15,8 +15,12 @@ This repository seeks to make it easy to build PyPy for Alpine Linux.
 ## Docker images
 Docker images are provided for building PyPy:
 
-* `alpine-pypy-build:2-bootstrap`: An image to build PyPy from source using cPython.
-* `alpine-pypy-build:2`: An image to build PyPy from source using an existing PyPy binary.
+* `alpine-pypy-build:$PYPY_VERSION-bootstrap-$ALPINE_VERSION`: Images to build PyPy from source using cPython.
+* `alpine-pypy-build:$PYPY_VERSION-$ALPINE_VERSION`: Images to build PyPy from source using an existing PyPy binary.
+
+*Where:*
+* `$PYPY_VERSION` is of the form `{2,3}-$VERSION` (e.g. `2-5.9.0`)
+* `$ALPINE_VERSION` is of the form `alpine$VERSION` (e.g. `alpine3.6`)
 
 ## Building
 ### From scratch
@@ -24,16 +28,17 @@ PyPy requires a Python implementation in order to build itself. The recommended 
 
 The first step is to get the `bootstrap` image which you can either build from source or pull from Docker Hub:
 ```sh
-docker build -t alpine-pypy-build:2-bootstrap -f 2/bootstrap.dockerfile 2
+cd 2/alpine3.6
+docker build -t alpine-pypy-build:2-bootstrap-alpine3.6 -f bootstrap/Dockerfile .
 ```
 or..
 ```sh
-docker pull jamiehewland/alpine-pypy-build:2-bootstrap
+docker pull jamiehewland/alpine-pypy-build:2-5.9.0-bootstrap-alpine3.6
 ```
 
 Then things should be as simple as running the container with a mounted volume:
 ```sh
-docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2-bootstrap
+docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2-5.9.0-bootstrap-alpine3.6
 ```
 
 Unless you have a really fast computer this will take several hours. As [the PyPy people say](http://pypy.org/download.html#building-from-source): Enjoy Mandelbrot `:-)`.
@@ -44,14 +49,14 @@ Once this is all done, the built PyPy package should be at `./tmp/usession-relea
 PyPy compiles several times faster using itself rather than cPython. In general, we can use older versions of PyPy to build newer ones. The PyPy builder is based on the non-builder image.
 
 ```sh
-docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2
+docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2-5.9.0-alpine3.6
 ```
 
 ## Notes on building PyPy on Alpine Linux
 There are a few workarounds for differences between Alpine Linux and the Debian-based Linux distributions that the PyPy team has thus far worked against.
 
 ### Issues when building all versions of PyPy
-* The standard Python package currently in the Alpine package repositories has an issue that prevents PyPy from compiling. The `alpine-pypy-build:2-bootstrap` image is based on the [`python:2-alpine`](https://hub.docker.com/_/python/) Docker image which instead builds Python from source.
+* The standard Python package currently in the Alpine package repositories has an issue that prevents PyPy from compiling. The bootstrap image is based on the Alpine variety of the [`python:2`](https://hub.docker.com/_/python/) Docker image which instead builds Python from source.
 
 ### Issues when building PyPy for Python 3
 * RPython expects the `stdin`/`stdout`/`stderr` file handles in `stdio.h` of the standard libc to be of type `FILE*`. With musl these are of type `FILE *const` rather. We patch RPython with the correct type.

@@ -6,7 +6,7 @@ PYTHON="$(which pypy || which python)"
 
 PYPY_NAME="pypy2"
 PYPY_RELEASE_VERSION="${PYPY_RELEASE_VERSION:-$PYPY_VERSION}"
-PYPY_ARCH="linux64"
+PYPY_ARCH="linux64-alpine$(cut -d. -f1,2 /etc/alpine-release)"
 
 # Translation
 cd "$BASE_DIR"/pypy/goal

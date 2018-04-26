@@ -24,8 +24,8 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN pip install --no-cache-dir pycparser
 
 # Download the source
-ENV PYPY_VERSION 5.10.0
-ENV PYPY_SHA256SUM 1209f2db718e6afda17528baa5138177a14a0938588a7d3e1b7c722c483079a8
+ENV PYPY_VERSION 6.0.0
+ENV PYPY_SHA256SUM 6097ec5ee23d0d34d8cd27a1072bed041c8a080ad48731190a03a2223029212d
 
 RUN set -ex; \
     apk add --no-cache wget; \

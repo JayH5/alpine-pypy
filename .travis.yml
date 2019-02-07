@@ -13,10 +13,12 @@ env:
     - REGISTRY_USER=jamiehewland
     - secure: "DCHokMpVW2tZFOD33RaH2Z768FTdyYh+j08CTRp7XRg2NIZf/NQacxchUM3xmsb711wEag10m06I3lBk3oBuea/KfmY2gowx1ThzoaZ27hAoDIGwfeem3atgbOEweCGMsxrsPmIXDwKfiJiZ30G8n4uz+uQEi0PS7tO4vIitryvld0ssOJyMMKei+bAv6KqLhIE8dwAiRnXbgQ9mW6mM7cb9tlL17Eu6n/pX+bR4M3qkoH7qGlHhM15EzszEUjN6g7oLxZKK9yABjVt0XxQfbwbBLf9yKgNhBRnkjZUlcNvDIS5hCFh/d6TW4q+zLJy6PpBKL83V80RDimm+JnkfcWKEDwLAfEmb1dpqIjQ4Id0Rp9v/3XobvyhYLNtzCMk8Qoly6hOkLTbbKgWuWN2d51ASxJ6iLswTjcKIkOPAbTdXV0QMgGfa7vjdgDrxLyVTaxYBk4BAIfGkWU01Oq4FMNHuPCr/fQKtWEvSVBXi7BRw1QviOScOr8eUc/QU+iawH+7WkScQLFnIsxO8yoXpdlmmQnKSTBk0KUS9DmBqYOYnyU1yPagq7/sdNBfKmgfV+rGhszPOw7I14SG08ApwWLuiauv7DRReeeoPX4oYjyRQr7Ue2rK3Igh4vDGJwxeXzqDx9hS9zNlV4xl2KWSDxxdIKZmE5SOiWXojCxiT+LY="
   matrix:
-    - VERSION=2/alpine3.7 VARIANT=
-    - VERSION=2/alpine3.7 VARIANT=bootstrap
-    - VERSION=3/alpine3.7 VARIANT=
-    - VERSION=3/alpine3.7 VARIANT=bootstrap
+    - VERSION=2.7/alpine3.9 VARIANT=
+    - VERSION=2.7/alpine3.9 VARIANT=bootstrap
+    - VERSION=3.5/alpine3.9 VARIANT=
+    - VERSION=3.5/alpine3.9 VARIANT=bootstrap
+    - VERSION=3.6/alpine3.9 VARIANT=
+    - VERSION=3.6/alpine3.9 VARIANT=bootstrap
 
 before_script:
   - cd "$VERSION"

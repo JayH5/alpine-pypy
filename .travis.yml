@@ -2,10 +2,6 @@ dist: xenial
 language: bash
 services: docker
 
-branches:
-  only:
-    - master
-
 env:
   global:
     - IMAGE_NAME=jamiehewland/alpine-pypy-build

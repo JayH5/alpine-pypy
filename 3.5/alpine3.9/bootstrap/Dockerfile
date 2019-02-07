@@ -30,7 +30,7 @@ ENV PYPY_SHA256SUM ef62eb73f416e2de8c9fec974c79434f7a650a6aaf9a640d5a2bec12984b0
 
 RUN set -ex; \
     apk add --no-cache wget; \
-    wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v${PYPY_VERSION}-src.tar.bz2"; \
+    wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v${PYPY_VERSION}-src.tar.bz2"; \
     echo "$PYPY_SHA256SUM *pypy.tar.bz2" | sha256sum -c -; \
     mkdir -p /usr/src/pypy; \
     tar -xjC /usr/src/pypy --strip-components=1 -f pypy.tar.bz2; \

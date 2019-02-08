@@ -25,7 +25,7 @@ RUN pip install --no-cache-dir pycparser
 
 # Download the source
 ENV PYPY_VERSION 7.0.0
-ENV PYPY_SHA256SUM 8e60c3fc261d4e42fc59d1f46c88dd1f6d952d0ce6b9cb197d62652ed03df3f9
+ENV PYPY_SHA256SUM f51d8bbfc4e73a8a01820b7871a45d13c59f1399822cdf8a19388c69eb20c18c
 
 RUN set -ex; \
     apk add --no-cache wget; \

@@ -60,6 +60,3 @@ There are a few workarounds for differences between Alpine Linux and the Debian-
 
 ### Issues when building PyPy for Python 3
 * RPython expects the `stdin`/`stdout`/`stderr` file handles in `stdio.h` of the standard libc to be of type `FILE*`. With musl these are of type `FILE *const` rather. We patch RPython with the correct type.
-* Another issue that surfaces when **running** PyPy is that the Alpine libraries for Berkeley DB (a.k.a. `libdb`) are not built with the historical dbm interface (`--enable-dbm`) which the [`dbm.ndbm`](https://docs.python.org/3/library/dbm.html#module-dbm.ndbm) module bundled with PyPy3 expects. When Alpine's `db` package is installed, PyPy3 will crash when trying to import any `dbm` module as the symbols it wants are missing. A solution is to delete the `dbm.ndbm` (`lib-python/3/dbm/ndbm.py`) module completely.
-* Since PyPy3.5 5.9.0, when building the CFFI bindings for the `curses` module, the `wint_t` type is not in scope on Alpine Linux for some reason. We have to include the `wchar.h` header which defines that type.
-* Since PyPy3.5 5.10.0, the bindings to OpenSSL in the `ssl` module do not support LibreSSL. Although Alpine's default SSL library is LibreSSL, OpenSSL packages are available so we use those.

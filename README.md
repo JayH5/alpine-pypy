@@ -19,7 +19,7 @@ Docker images are provided for building PyPy:
 * `alpine-pypy-build:$PYPY_VERSION-$ALPINE_VERSION`: Images to build PyPy from source using an existing PyPy binary.
 
 *Where:*
-* `$PYPY_VERSION` is of the form `{2,3}-$VERSION` (e.g. `2-5.9.0`)
+* `$PYPY_VERSION` is of the form `{2.7,3.5,3.6}-$VERSION` (e.g. `3.5-7.0.0`)
 * `$ALPINE_VERSION` is of the form `alpine$VERSION` (e.g. `alpine3.6`)
 
 ## Building
@@ -28,17 +28,17 @@ PyPy requires a Python implementation in order to build itself. The recommended 
 
 The first step is to get the `bootstrap` image which you can either build from source or pull from Docker Hub:
 ```sh
-cd 2/alpine3.6
-docker build -t alpine-pypy-build:2-bootstrap-alpine3.6 -f bootstrap/Dockerfile .
+cd 2.7/alpine3.9
+docker build -t alpine-pypy-build:2.7-bootstrap-alpine3.9 -f bootstrap/Dockerfile .
 ```
 or..
 ```sh
-docker pull jamiehewland/alpine-pypy-build:2-5.9.0-bootstrap-alpine3.6
+docker pull jamiehewland/alpine-pypy-build:2.7-7.0.0-bootstrap-alpine3.9
 ```
 
 Then things should be as simple as running the container with a mounted volume:
 ```sh
-docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2-5.9.0-bootstrap-alpine3.6
+docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2.7-7.0.0-bootstrap-alpine3.9
 ```
 
 Unless you have a really fast computer this will take several hours. As [the PyPy people say](http://pypy.org/download.html#building-from-source): Enjoy Mandelbrot `:-)`.
@@ -49,7 +49,7 @@ Once this is all done, the built PyPy package should be at `./tmp/usession-relea
 PyPy compiles several times faster using itself rather than cPython. In general, we can use older versions of PyPy to build newer ones. The PyPy builder is based on the non-builder image.
 
 ```sh
-docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2-5.9.0-alpine3.6
+docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2.7-7.0.0-alpine3.9
 ```
 
 ## Notes on building PyPy on Alpine Linux

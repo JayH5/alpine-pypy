@@ -28,13 +28,11 @@ ENV PYPY_VERSION 7.0.0
 ENV PYPY_SHA256SUM f51d8bbfc4e73a8a01820b7871a45d13c59f1399822cdf8a19388c69eb20c18c
 
 RUN set -ex; \
-    apk add --no-cache wget; \
     wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v${PYPY_VERSION}-src.tar.bz2"; \
     echo "$PYPY_SHA256SUM *pypy.tar.bz2" | sha256sum -c -; \
     mkdir -p /usr/src/pypy; \
     tar -xjC /usr/src/pypy --strip-components=1 -f pypy.tar.bz2; \
-    rm pypy.tar.bz2; \
-    apk del wget
+    rm pypy.tar.bz2
 
 WORKDIR /usr/src/pypy
 

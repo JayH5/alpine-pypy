@@ -9,10 +9,10 @@ RUN apk add --no-cache --virtual .build-deps \
         gdbm-dev \
         libc-dev \
         libffi-dev \
+        libressl-dev \
         linux-headers \
         make \
         ncurses-dev \
-        openssl-dev \
         pax-utils \
         readline-dev \
         sqlite-dev \

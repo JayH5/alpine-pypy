@@ -1,4 +1,4 @@
-FROM python:2.7.15-alpine3.9
+FROM python:2.7-alpine3.9
 LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies
@@ -24,8 +24,8 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN pip install --no-cache-dir pycparser
 
 # Download the source
-ENV PYPY_VERSION 7.0.0
-ENV PYPY_SHA256SUM f51d8bbfc4e73a8a01820b7871a45d13c59f1399822cdf8a19388c69eb20c18c
+ENV PYPY_VERSION 7.1.0
+ENV PYPY_SHA256SUM b051a71ea5b4fa27d0a744b28e6054661adfce8904dcc82500716b5edff5ce4b
 
 RUN set -ex; \
     wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v${PYPY_VERSION}-src.tar.bz2"; \

@@ -1,4 +1,4 @@
-FROM jamiehewland/alpine-pypy:2.7-7.0.0-alpine3.9
+FROM jamiehewland/alpine-pypy:2.7-7.1.0-alpine3.9
 LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies

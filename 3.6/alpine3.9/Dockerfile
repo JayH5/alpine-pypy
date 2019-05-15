@@ -1,4 +1,4 @@
-FROM jamiehewland/alpine-pypy:2.7-7.0.0-alpine3.9
+FROM jamiehewland/alpine-pypy:2.7-7.1.0-alpine3.9
 LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies
@@ -23,8 +23,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev
 
 # Download the source
-ENV PYPY_VERSION 7.1.0
-ENV PYPY_SHA256SUM faa81f469bb2a7cbd22c64f22d4b4ddc5a1f7c798d43b7919b629b932f9b1c6f
+ENV PYPY_VERSION 7.1.1
+ENV PYPY_SHA256SUM 6a3ef876e3691a54f4cff045028ec3be94ab9beb2e99f051b83175302c1899a8
 
 RUN set -ex; \
     wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v${PYPY_VERSION}-src.tar.bz2"; \

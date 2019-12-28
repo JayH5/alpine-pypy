@@ -19,7 +19,7 @@ Docker images are provided for building PyPy:
 * `alpine-pypy-build:$PYPY_VERSION-$ALPINE_VERSION`: Images to build PyPy from source using an existing PyPy binary.
 
 *Where:*
-* `$PYPY_VERSION` is of the form `{2.7,3.5,3.6}-$VERSION` (e.g. `3.5-7.0.0`)
+* `$PYPY_VERSION` is of the form `{2.7,3.6}-$VERSION` (e.g. `2.7-7.0.0`)
 * `$ALPINE_VERSION` is of the form `alpine$VERSION` (e.g. `alpine3.6`)
 
 ## Building

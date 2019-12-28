@@ -25,8 +25,8 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN pip install --no-cache-dir pycparser
 
 # Download the source
-ENV PYPY_VERSION 7.1.0
-ENV PYPY_SHA256SUM faa81f469bb2a7cbd22c64f22d4b4ddc5a1f7c798d43b7919b629b932f9b1c6f
+ENV PYPY_VERSION 7.3.0
+ENV PYPY_SHA256SUM 48d12c15fbcbcf4a32882a883195e1f922997cde78e7a16d4342b9b521eefcfa
 
 RUN set -ex; \
     wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v${PYPY_VERSION}-src.tar.bz2"; \

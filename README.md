@@ -63,3 +63,4 @@ There are a few workarounds for differences between Alpine Linux and the Debian-
 
 ### Issues when building PyPy for Python 3
 * RPython expects the `stdin`/`stdout`/`stderr` file handles in `stdio.h` of the standard libc to be of type `FILE*`. With musl these are of type `FILE *const` rather (see [this mailing list thread](https://www.openwall.com/lists/musl/2018/02/02/2)). We patch RPython with the correct type.
+* Alpine Linux doesn't include some common time types by default. This seems to be a common problem when compiling code on Alpine: see [here](https://stackoverflow.com/questions/35614923/errors-compiling-mesos-on-alpine-linux) or [here](https://github.com/tesseract-ocr/tesseract/issues/2632). We patch PyPy's "cpyext" module to include `sys/time.h`.

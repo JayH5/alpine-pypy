@@ -59,7 +59,6 @@ There are a few workarounds for differences between Alpine Linux and the Debian-
 * The standard Python package currently in the Alpine package repositories has an issue that prevents PyPy from compiling. The bootstrap image is based on the Alpine variety of the [`python:2`](https://hub.docker.com/_/python/) Docker image which instead builds Python from source.
 
 ### Issues when building PyPy for Python 2
-* The `ssl` module fails to compile against Alpine Linux's OpenSSL libraries. It's not clear why this is, but it may be due to issues compiling against OpenSSL 1.1.x. PyPy is instead compiled against LibreSSL, which Alpine previously (versions 3.5-3.8) used as its primary SSL library. LibreSSL (2.7) implements the older OpenSSL 1.0.2 API.
 
 ### Issues when building PyPy for Python 3
 * RPython expects the `stdin`/`stdout`/`stderr` file handles in `stdio.h` of the standard libc to be of type `FILE*`. With musl these are of type `FILE *const` rather (see [this mailing list thread](https://www.openwall.com/lists/musl/2018/02/02/2)). We patch RPython with the correct type.

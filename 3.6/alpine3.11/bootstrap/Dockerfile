@@ -1,4 +1,4 @@
-FROM python:2.7-alpine3.9
+FROM python:2.7-alpine3.11
 LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies
@@ -25,11 +25,11 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN pip install --no-cache-dir pycparser
 
 # Download the source
-ENV PYPY_VERSION 7.0.0
-ENV PYPY_SHA256SUM b2ddb0f45cb4e0384fb498ef7fcca2ac96c730b9000affcf8d730169397f017f
+ENV PYPY_VERSION 7.3.0
+ENV PYPY_SHA256SUM 48d12c15fbcbcf4a32882a883195e1f922997cde78e7a16d4342b9b521eefcfa
 
 RUN set -ex; \
-    wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v${PYPY_VERSION}-src.tar.bz2"; \
+    wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v${PYPY_VERSION}-src.tar.bz2"; \
     echo "$PYPY_SHA256SUM *pypy.tar.bz2" | sha256sum -c -; \
     mkdir -p /usr/src/pypy; \
     tar -xjC /usr/src/pypy --strip-components=1 -f pypy.tar.bz2; \

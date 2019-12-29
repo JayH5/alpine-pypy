@@ -6,7 +6,7 @@ env:
   global:
     - IMAGE_NAME=jamiehewland/alpine-pypy-build
     - REGISTRY_USER=jamiehewland
-    - secure: "DCHokMpVW2tZFOD33RaH2Z768FTdyYh+j08CTRp7XRg2NIZf/NQacxchUM3xmsb711wEag10m06I3lBk3oBuea/KfmY2gowx1ThzoaZ27hAoDIGwfeem3atgbOEweCGMsxrsPmIXDwKfiJiZ30G8n4uz+uQEi0PS7tO4vIitryvld0ssOJyMMKei+bAv6KqLhIE8dwAiRnXbgQ9mW6mM7cb9tlL17Eu6n/pX+bR4M3qkoH7qGlHhM15EzszEUjN6g7oLxZKK9yABjVt0XxQfbwbBLf9yKgNhBRnkjZUlcNvDIS5hCFh/d6TW4q+zLJy6PpBKL83V80RDimm+JnkfcWKEDwLAfEmb1dpqIjQ4Id0Rp9v/3XobvyhYLNtzCMk8Qoly6hOkLTbbKgWuWN2d51ASxJ6iLswTjcKIkOPAbTdXV0QMgGfa7vjdgDrxLyVTaxYBk4BAIfGkWU01Oq4FMNHuPCr/fQKtWEvSVBXi7BRw1QviOScOr8eUc/QU+iawH+7WkScQLFnIsxO8yoXpdlmmQnKSTBk0KUS9DmBqYOYnyU1yPagq7/sdNBfKmgfV+rGhszPOw7I14SG08ApwWLuiauv7DRReeeoPX4oYjyRQr7Ue2rK3Igh4vDGJwxeXzqDx9hS9zNlV4xl2KWSDxxdIKZmE5SOiWXojCxiT+LY="
+    - secure: "GyOz14YYPN9fkPXGfZHVap/eYYuzCwsJn0t6QuM+ek31gqtnNVNQ2Qdfv9wz0G3EnNuXzgE75vhdOxKIyx5QM5r5XCjtj6joBdTQgB0LcjpDaLyHTRJkQagYFgwc1Ln1uwvfSn4DZ4YmdvjnhzFyzForbnO+HRBYjm1y/jcmhblDftBTPAksBmCbRCT25goc6gRAhlqEf9f+Sw5klWbO/TRH7qNH/gB1+Er7w/FX0m0UVrOzz6OosolAiXlEcAF9bNXUGDjpMp2+nJRhyr8N5HQrrqR/Rhnn+/HGq5vksSxVZNkZ5bk/7Cj0fX1mQskVadGZigFmnUkYcBGVlKYUBYVu2BV6IVa07ik1kbFA/Fi9kJQNHW4gw2iloCOldDKZnLnN4X/p5D4fWhrlQFd6/m7eDITG+5fmN8ttez7IiTfLEyMlO3Kmh+ZAqoFmPy8368UCAOVAGcdhYqUwVkxN7mWZtgLKl6vLsb/JwAK+9YACKxRBlcoR3pBbOaw8cKqDGUIAu65vQtbC65klTk5vNZKah33VKFbLXVUCeknVx1qi18OannSOoXeApXID48YqblNwKglwBo+4KnGdlM592boh0hV2cfpIRiyoD9MXJionCYQu9jE+VtiT43s0ctYc3qizmv0cCi0aGk4fq3hf5hQEEgOl8AsSLgRDcKVl4Bc="
   matrix:
     - VERSION=2.7/alpine3.9 VARIANT=
     - VERSION=2.7/alpine3.9 VARIANT=bootstrap
@@ -30,7 +30,7 @@ after_script:
   - docker images
 
 before_deploy:
-  - echo "$REGISTRY_PASS" | docker login -u "$REGISTRY_USER" --password-stdin
+  - docker login --username "$REGISTRY_USER" --password "$REGISTRY_PASS"
 deploy:
   provider: script
   script: docker push "$image"

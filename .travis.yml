@@ -8,12 +8,8 @@ env:
     - REGISTRY_USER=jamiehewland
     - secure: "GyOz14YYPN9fkPXGfZHVap/eYYuzCwsJn0t6QuM+ek31gqtnNVNQ2Qdfv9wz0G3EnNuXzgE75vhdOxKIyx5QM5r5XCjtj6joBdTQgB0LcjpDaLyHTRJkQagYFgwc1Ln1uwvfSn4DZ4YmdvjnhzFyzForbnO+HRBYjm1y/jcmhblDftBTPAksBmCbRCT25goc6gRAhlqEf9f+Sw5klWbO/TRH7qNH/gB1+Er7w/FX0m0UVrOzz6OosolAiXlEcAF9bNXUGDjpMp2+nJRhyr8N5HQrrqR/Rhnn+/HGq5vksSxVZNkZ5bk/7Cj0fX1mQskVadGZigFmnUkYcBGVlKYUBYVu2BV6IVa07ik1kbFA/Fi9kJQNHW4gw2iloCOldDKZnLnN4X/p5D4fWhrlQFd6/m7eDITG+5fmN8ttez7IiTfLEyMlO3Kmh+ZAqoFmPy8368UCAOVAGcdhYqUwVkxN7mWZtgLKl6vLsb/JwAK+9YACKxRBlcoR3pBbOaw8cKqDGUIAu65vQtbC65klTk5vNZKah33VKFbLXVUCeknVx1qi18OannSOoXeApXID48YqblNwKglwBo+4KnGdlM592boh0hV2cfpIRiyoD9MXJionCYQu9jE+VtiT43s0ctYc3qizmv0cCi0aGk4fq3hf5hQEEgOl8AsSLgRDcKVl4Bc="
   matrix:
-    - VERSION=2.7/alpine3.9 VARIANT=
-    - VERSION=2.7/alpine3.9 VARIANT=bootstrap
     - VERSION=2.7/alpine3.11 VARIANT=
     - VERSION=2.7/alpine3.11 VARIANT=bootstrap
-    - VERSION=3.6/alpine3.9 VARIANT=
-    - VERSION=3.6/alpine3.9 VARIANT=bootstrap
     - VERSION=3.6/alpine3.11 VARIANT=
     - VERSION=3.6/alpine3.11 VARIANT=bootstrap
 

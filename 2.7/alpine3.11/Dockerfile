@@ -1,4 +1,4 @@
-FROM jamiehewland/alpine-pypy:2.7-7.1.0-alpine3.9
+FROM jamiehewland/alpine-pypy:2.7-7.3.0-alpine3.11
 LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies
@@ -9,10 +9,10 @@ RUN apk add --no-cache --virtual .build-deps \
         gdbm-dev \
         libc-dev \
         libffi-dev \
-        libressl-dev \
         linux-headers \
         make \
         ncurses-dev \
+        openssl-dev \
         pax-utils \
         readline-dev \
         sqlite-dev \
@@ -22,8 +22,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev
 
 # Download the source
-ENV PYPY_VERSION 7.1.1
-ENV PYPY_SHA256SUM 5f06bede6d71dce8dfbfe797aab26c8e35cb990e16b826914652dc093ad74451
+ENV PYPY_VERSION 7.3.0
+ENV PYPY_SHA256SUM b0b25c7f8938ab0fedd8dedf26b9e73c490913b002b484c1b2f19d5844a518de
 
 RUN set -ex; \
     wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v${PYPY_VERSION}-src.tar.bz2"; \

@@ -10,9 +10,11 @@ env:
   matrix:
     - VERSION=2.7/alpine3.9 VARIANT=
     - VERSION=2.7/alpine3.9 VARIANT=bootstrap
+    - VERSION=2.7/alpine3.11 VARIANT=
     - VERSION=2.7/alpine3.11 VARIANT=bootstrap
     - VERSION=3.6/alpine3.9 VARIANT=
     - VERSION=3.6/alpine3.9 VARIANT=bootstrap
+    - VERSION=3.6/alpine3.11 VARIANT=
     - VERSION=3.6/alpine3.11 VARIANT=bootstrap
 
 before_script:

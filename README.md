@@ -59,6 +59,7 @@ There are a few workarounds for differences between Alpine Linux and the Debian-
 * The standard Python package currently in the Alpine package repositories has an issue that prevents PyPy from compiling. The bootstrap image is based on the Alpine variety of the [`python:2`](https://hub.docker.com/_/python/) Docker image which instead builds Python from source.
 
 ### Issues when building PyPy for Python 2
+* In PyPy2.7 7.3.1, when building the CFFI bindings for the curses module, the wint_t type is not in scope on Alpine Linux for some reason. We have to include the wchar.h header which defines that type. (This was also the case with PyPy3.5 5.9.0 but was eventually fixed.)
 
 ### Issues when building PyPy for Python 3
 * RPython expects the `stdin`/`stdout`/`stderr` file handles in `stdio.h` of the standard libc to be of type `FILE*`. With musl these are of type `FILE *const` rather (see [this mailing list thread](https://www.openwall.com/lists/musl/2018/02/02/2)). We patch RPython with the correct type.

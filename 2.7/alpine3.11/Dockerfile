@@ -22,8 +22,8 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev
 
 # Download the source
-ENV PYPY_VERSION 7.3.0
-ENV PYPY_SHA256SUM b0b25c7f8938ab0fedd8dedf26b9e73c490913b002b484c1b2f19d5844a518de
+ENV PYPY_VERSION 7.3.1
+ENV PYPY_SHA256SUM fa3771514c8a354969be9bd3b26d65a489c30e28f91d350e4ad2f4081a9c9321
 
 RUN set -ex; \
     wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v${PYPY_VERSION}-src.tar.bz2"; \

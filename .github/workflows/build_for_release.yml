@@ -2,6 +2,8 @@ name: Build PyPy for Release
 
 on:
   push:
+    paths:
+      - .github/workflows/build_for_release.yml
 
 # Using old images until I can figure out how to get mine working
 jobs:

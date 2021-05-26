@@ -5,7 +5,7 @@ on:
 
 
 jobs:
-  '3.7-docker':
+  'docker-3-7':
     runs-on: ubuntu-latest
     steps:
 
@@ -75,7 +75,7 @@ jobs:
   #       tags: ${{ steps.meta.outputs.tags }}
   #       labels: ${{ steps.meta.outputs.labels }}
 
-  known_good:
+  known-good:
       runs-on: ubuntu-latest
       steps:
         - name: Build

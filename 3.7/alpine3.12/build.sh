@@ -3,8 +3,7 @@ set -ex
 
 BASE_DIR="/usr/src/pypy"
 PYTHON="$(which pypy || which python)"
-
-PYPY_NAME="pypy3.6"
+PYPY_NAME="pypy3.7"
 PYPY_RELEASE_VERSION="${PYPY_RELEASE_VERSION:-$PYPY_VERSION}"
 PYPY_ARCH="linux64-alpine$(cut -d. -f1,2 /etc/alpine-release)"
 

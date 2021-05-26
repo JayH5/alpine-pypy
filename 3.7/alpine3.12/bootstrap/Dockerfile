@@ -25,11 +25,11 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN pip install --no-cache-dir pycparser
 
 # Download the source
-ENV PYPY_VERSION 7.3.1
-ENV PYPY_SHA256SUM 0c2cc3229da36c6984baee128c8ff8bb4516d69df1d73275dc4622bf249afa83
+ENV PYPY_VERSION 7.3.5
+ENV PYPY_SHA256SUM d920fe409a9ecad9d074aa8568ca5f3ed3581be66f66e5d8988b7ec66e6d99a2
 
 RUN set -ex; \
-    wget -O pypy.tar.bz2 "https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v${PYPY_VERSION}-src.tar.bz2"; \
+    wget -O pypy.tar.bz2 "https://downloads.python.org/pypy/pypy3.7-v${PYPY_VERSION}-src.tar.bz2"; \
     echo "$PYPY_SHA256SUM *pypy.tar.bz2" | sha256sum -c -; \
     mkdir -p /usr/src/pypy; \
     tar -xjC /usr/src/pypy --strip-components=1 -f pypy.tar.bz2; \

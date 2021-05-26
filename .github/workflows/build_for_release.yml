@@ -1,9 +1,9 @@
-name: Build for Release
+name: Build PyPy for Release
 
 on:
   push:
 
-
+# Using old images until I can figure out how to get mine working
 jobs:
   known-good-2-7:
     runs-on: ubuntu-latest

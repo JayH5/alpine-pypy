@@ -1,5 +1,4 @@
 FROM python:2.7-alpine3.11
-LABEL maintainer "Jamie Hewland <jhewland@gmail.com>"
 
 # Add build dependencies
 RUN apk add --no-cache --virtual .build-deps \

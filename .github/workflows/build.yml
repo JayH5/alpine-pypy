@@ -79,7 +79,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Build
-          run: docker run --rm -it -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2.7-7.3.0-alpine3.11
+          run: docker run --rm -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2.7-7.3.0-alpine3.11
 
         - name: Check
           run: ls /tmp/

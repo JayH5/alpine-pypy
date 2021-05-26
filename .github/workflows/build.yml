@@ -18,7 +18,7 @@ jobs:
       with:
         images: cyb3rjak3/alpine-pypy-builder,ghcr.io/cyb3r-jak3/alpine-pypy-builder
         flavor: |
-          latest: off
+          latest: false
         tags: |
           type=ref,event=pr
           type=semver,pattern={{version}}
@@ -66,7 +66,7 @@ jobs:
       with:
         images: cyb3rjak3/alpine-pypy-builder,ghcr.io/cyb3r-jak3/alpine-pypy-builder
         flavor: |
-          latest: off
+          latest: false
           suffix: -2.7
         tags: |
           type=ref,event=pr
@@ -115,7 +115,7 @@ jobs:
       with:
         images: cyb3rjak3/alpine-pypy-builder,ghcr.io/cyb3r-jak3/alpine-pypy-builder
         flavor: |
-          latest: off
+          latest: false
           suffix: -bootstrap
         tags: |
           type=ref,event=pr
@@ -164,7 +164,7 @@ jobs:
       with:
         images: cyb3rjak3/alpine-pypy-builder,ghcr.io/cyb3r-jak3/alpine-pypy-builder
         flavor: |
-          latest: off
+          latest: false
           suffix: -2.7-bootstrap
         tags: |
           type=ref,event=pr

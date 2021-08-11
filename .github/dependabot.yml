@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: "docker"
+  # Can only list one directory and the PyPi tags are the main ones
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+        - "Cyb3r-Jak3"
+    labels:
+        - "dependencies"
+    reviewers:
+        - "Cyb3r-Jak3"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+        - "Cyb3r-Jak3"
+    labels:
+        - "dependencies"
+    reviewers:
+        - "Cyb3r-Jak3"
+    

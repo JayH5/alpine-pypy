@@ -1,5 +1,5 @@
---- a/lib_pypy/_curses_build.py
-+++ b/lib_pypy/_curses_build.py
+---a/lib_pypy/_curses_build.py
++++b/lib_pypy/_curses_build.py
 @@ -72,6 +72,7 @@
  #include <ncurses.h>
  #include <panel.h>

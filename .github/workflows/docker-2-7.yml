@@ -17,7 +17,7 @@ jobs:
 
     - name: Docker Meta
       id: meta
-      uses: docker/metadata-action@v3
+      uses: docker/metadata-action@v3.4.0
       with:
         images: cyb3rjak3/alpine-pypy-builder,ghcr.io/cyb3r-jak3/alpine-pypy-builder
         flavor: |
@@ -32,7 +32,7 @@ jobs:
           org.label-schema.schema-version=1.0.0-rc1
 
     - name: Set up QEMU
-      uses: docker/setup-qemu-action@v1.1.0
+      uses: docker/setup-qemu-action@v1.2.0
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1.3.0
@@ -45,14 +45,14 @@ jobs:
         restore-keys: buildx-2.7-
 
     - name: 2.7 Build and Push
-      uses: docker/build-push-action@v2.4.0
+      uses: docker/build-push-action@v2.6.1
       with:
         platforms: linux/amd64,linux/arm64
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
         push: ${{ startsWith(github.ref, 'refs/tags/v') }}
-        context: ./2.7/alpine3.12/
-        file: ./2.7/alpine3.12/Dockerfile
+        context: ./2.7/alpine3.11/
+        file: ./2.7/alpine3.11/Dockerfile
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
 
@@ -74,7 +74,7 @@ jobs:
 
     - name: Docker Meta
       id: meta
-      uses: docker/metadata-action@v3
+      uses: docker/metadata-action@v3.4.0
       with:
         images: cyb3rjak3/alpine-pypy-builder,ghcr.io/cyb3r-jak3/alpine-pypy-builder
         flavor: |
@@ -102,14 +102,14 @@ jobs:
         restore-keys: buildx-2.7-bootstrap
 
     - name: 2.7 Bootstrap Build and Push
-      uses: docker/build-push-action@v2.4.0
+      uses: docker/build-push-action@v2.6.1
       with:
         platforms: linux/amd64,linux/arm64
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
         push: ${{ startsWith(github.ref, 'refs/tags/v') }}
-        context: ./2.7/alpine3.12/
-        file: ./2.7/alpine3.12/bootstrap/Dockerfile
+        context: ./2.7/alpine3.11/
+        file: ./2.7/alpine3.11/bootstrap/Dockerfile
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
 

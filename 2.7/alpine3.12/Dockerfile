@@ -14,6 +14,7 @@ RUN apk add --no-cache --virtual .build-deps \
         openssl-dev \
         pax-utils \
         patch \
+        python2-dev \
         readline-dev \
         sqlite-dev \
         tar \

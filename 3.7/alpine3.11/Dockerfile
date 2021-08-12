@@ -36,13 +36,14 @@ RUN set -ex \
 
 WORKDIR /usr/src/pypy
 
+# For some reason. None bootstrap images can't patch
 # Run patches
-COPY patches /patches
-RUN set -ex; \
-    for patch in /patches/*.patch; do \
-        patch -p1 -E -i "$patch"; \
-    done \
-    && rm -rf patches
+# COPY patches /patches
+# RUN set -ex; \
+#     for patch in /patches/*.patch; do \
+#         patch -p1 -E -i "$patch"; \
+#     done \
+#     && rm -rf /patches
 
 COPY build.sh /build.sh
 CMD ["/build.sh"]

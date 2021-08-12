@@ -40,7 +40,8 @@ COPY patches /patches
 RUN set -ex; \
     for patch in /patches/*.patch; do \
         patch -p1 -E -i "$patch"; \
-    done
+    done \
+    && rm -rf /patches
 
 COPY ./build.sh /build.sh
 CMD ["/build.sh"]

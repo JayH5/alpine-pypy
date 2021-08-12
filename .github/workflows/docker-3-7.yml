@@ -2,6 +2,8 @@ name: Docker 3.7
 
 on:
   push:
+    branches:
+      - '**'
     tags:
       - "v*"
     paths:

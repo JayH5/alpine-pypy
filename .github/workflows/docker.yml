@@ -10,6 +10,7 @@ on:
       - '2.7/**'
       - '3.7/**'
       - .github/workflows/docker.yml
+      - "docker-bake.hcl"
 
 jobs:
 

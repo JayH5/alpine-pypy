@@ -102,7 +102,7 @@ jobs:
       with:
         path: /tmp/.buildx-cache
         key: buildx-3.7-bootstrap-${{ github.sha }}
-        restore-keys: buildx-2.7-bootstrap
+        restore-keys: buildx-3.7-bootstrap
 
     - name: 3.7 Bootstrap Build and Push
       uses: docker/build-push-action@v2.6.1

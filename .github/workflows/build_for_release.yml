@@ -24,7 +24,7 @@ jobs:
         with:
           name: pypy-2.7
           path: '*.tar.bz2'
-          retention-days: 30
+          retention-days: 7
 
   known-good-3-6:
     runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
         with:
           name: pypy-3.6
           path: '*.tar.bz2'
-          retention-days: 30
+          retention-days: 7
   
   create-release:
     runs-on: ubuntu-latest

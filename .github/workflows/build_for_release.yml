@@ -37,9 +37,9 @@ jobs:
           path: tmp/usession-*/build
           retention-days: 30
   
-    create-release:
-      runs-on: ubuntu-latest
-      needs: ['known-good-3-6', 'known-good-2-7']
-      steps:
-        - uses: actions/download-artifact@v2
-        - run: ls -la
+  create-release:
+    runs-on: ubuntu-latest
+    needs: ['known-good-3-6', 'known-good-2-7']
+    steps:
+      - uses: actions/download-artifact@v2
+      - run: ls -la

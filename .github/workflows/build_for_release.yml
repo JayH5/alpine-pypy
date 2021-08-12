@@ -17,7 +17,7 @@ jobs:
       - name: Build
         run: |
           docker run --rm -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:2.7-7.3.1-alpine3.11
-          mv tmp/usession-*/build/*.tar.bz2 .
+          cp tmp/usession-*/build/*.tar.bz2 .
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
@@ -32,7 +32,7 @@ jobs:
       - name: Build
         run: |
           docker run --rm -v "$(pwd)/tmp:/tmp" jamiehewland/alpine-pypy-build:3.6-7.3.1-alpine3.11
-          mv tmp/usession-*/build/*.tar.bz2 .
+          cp tmp/usession-*/build/*.tar.bz2 .
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2

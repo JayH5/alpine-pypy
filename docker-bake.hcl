@@ -12,6 +12,7 @@ target "docker-metadata-action" {
 }
 
 target "2.7" {
+    inherits = ["docker-metadata-action"]
     dockerfile = "Dockerfile"
     context = "./2.7/alpine3.11/"
     tags = [
@@ -21,6 +22,7 @@ target "2.7" {
 }
 
 target "2.7-bootstrap" {
+    inherits = ["docker-metadata-action"]
     dockerfile = "bootstrap/Dockerfile"
     context = "./2.7/alpine3.11/"
     tags = [
@@ -30,6 +32,7 @@ target "2.7-bootstrap" {
 }
 
 target "3.7" {
+    inherits = ["docker-metadata-action"]
     dockerfile = "Dockerfile"
     context = "./3.7/alpine3.11/"
     tags = [
@@ -39,6 +42,7 @@ target "3.7" {
 }
 
 target "3.7-bootstrap" {
+    inherits = ["docker-metadata-action"]
     dockerfile = "bootstrap/Dockerfile"
     context = "./3.7/alpine3.11/"
     tags = [

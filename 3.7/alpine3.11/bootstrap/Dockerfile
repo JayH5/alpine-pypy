@@ -13,6 +13,7 @@ RUN apk add --no-cache --virtual .build-deps \
         ncurses-dev \
         openssl-dev \
         pax-utils \
+        python2-dev \
         readline-dev \
         sqlite-dev \
         tar \

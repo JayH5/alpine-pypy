@@ -14,6 +14,7 @@ RUN apk add --no-cache --virtual .build-deps \
         openssl-dev \
         pax-utils \
         patch \
+        python2-dev \
         readline-dev \
         sqlite-dev \
         tar \
@@ -36,7 +37,7 @@ RUN set -ex \
 
 WORKDIR /usr/src/pypy
 
-# For some reason. None bootstrap images can't patch
+# For some reason. Non bootstrap image can't patch
 # Run patches
 # COPY patches /patches
 # RUN set -ex; \

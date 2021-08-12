@@ -3,7 +3,7 @@ name: Docker 3.7
 on:
   push:
     paths:
-      - 3.7/
+      - '3.7/**'
       - .github/workflows/docker-3-7.yml
 
 jobs:

@@ -2,6 +2,8 @@ name: Docker 2.7
 
 on:
   push:
+    tags:
+      - "v*"
     paths:
       - '2.7/**'
       - .github/workflows/docker-2-7.yml

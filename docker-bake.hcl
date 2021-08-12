@@ -12,7 +12,7 @@ target "docker-metadata-action" {
 }
 
 target "2.7" {
-    dockerfile = "./2.7/alpine3.11/Dockerfile"
+    dockerfile = "Dockerfile"
     context = "./2.7/alpine3.11/"
     tags = [
         "cyb3rjak3/alpine-pypy-build:2.7-7.3.5-alpine3.11",
@@ -21,7 +21,7 @@ target "2.7" {
 }
 
 target "2.7-bootstrap" {
-    dockerfile = "./2.7/alpine3.11/bootstrap/Dockerfile"
+    dockerfile = "bootstrap/Dockerfile"
     context = "./2.7/alpine3.11/"
     tags = [
         "cyb3rjak3/alpine-pypy-build:2.7-7.3.5-bootstrap-alpine3.11",
@@ -30,7 +30,7 @@ target "2.7-bootstrap" {
 }
 
 target "3.7" {
-    dockerfile = "./3.7/alpine3.11/Dockerfile"
+    dockerfile = "Dockerfile"
     context = "./3.7/alpine3.11/"
     tags = [
         "cyb3rjak3/alpine-pypy-build:3.7-7.3.5-alpine3.11",
@@ -39,7 +39,7 @@ target "3.7" {
 }
 
 target "3.7-bootstrap" {
-    dockerfile = "./3.7/alpine3.11/bootstrap/Dockerfile"
+    dockerfile = "bootstrap/Dockerfile"
     context = "./3.7/alpine3.11/"
     tags = [
         "cyb3rjak3/alpine-pypy-build:3.7-7.3.5-bootstrap-alpine3.11",

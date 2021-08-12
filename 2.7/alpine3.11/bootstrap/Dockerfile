@@ -22,7 +22,7 @@ RUN apk add --no-cache --virtual .build-deps \
         tk-dev \
         zlib-dev
 
-RUN pip install --no-cache-dir pycparser
+RUN pip install --no-cache-dir --disable-pip-version-check pycparser
 
 # Download the source
 ENV PYPY_VERSION 7.3.5

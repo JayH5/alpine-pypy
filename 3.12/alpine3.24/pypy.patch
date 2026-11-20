@@ -1,0 +1,44 @@
+--- a/pypy/module/cpyext/include/pytime.h
++++ b/pypy/module/cpyext/include/pytime.h
+@@ -45,6 +45,7 @@
+ #ifndef Py_PYTIME_H
+ #define Py_PYTIME_H
+ 
++#include <sys/time.h>
+ /**************************************************************************
+ Symbols and macros to supply platform-independent interfaces to time related
+ functions and constants
+--- a/rpython/rlib/clibffi.py
++++ b/rpython/rlib/clibffi.py
+@@ -77,11 +77,11 @@ if not _WIN32:
+     library_dirs = platform.library_dirs_for_libffi()
+     libraries = ['ffi']
+     link_files = []
+-    for libdir in library_dirs:
+-        candidate = os.path.join(libdir, "libffi.a")
+-        if os.path.exists(candidate):
+-            link_files.append(candidate)
+-            libraries = []
++    #for libdir in library_dirs:
++    #    candidate = os.path.join(libdir, "libffi.a")
++    #    if os.path.exists(candidate):
++    #        link_files.append(candidate)
++    #        libraries = []
+ 
+     eci = ExternalCompilationInfo(
+         pre_include_bits = pre_include_bits,
+--- a/rpython/rlib/rfile.py
++++ b/rpython/rlib/rfile.py
+@@ -123,11 +123,11 @@ c_feof = llexternal('feof', [FILEP], rffi.INT)
+ c_ferror = llexternal('ferror', [FILEP], rffi.INT)
+ c_clearerr = llexternal('clearerr', [FILEP], lltype.Void)
+ 
+-c_stdin = rffi.CExternVariable(FILEP, 'stdin', eci, c_type='FILE*',
++c_stdin = rffi.CExternVariable(FILEP, 'stdin', eci, c_type='FILE *const',
+                                getter_only=True, declare_as_extern=False)
+-c_stdout = rffi.CExternVariable(FILEP, 'stdout', eci, c_type='FILE*',
++c_stdout = rffi.CExternVariable(FILEP, 'stdout', eci, c_type='FILE *const',
+                                 getter_only=True, declare_as_extern=False)
+-c_stderr = rffi.CExternVariable(FILEP, 'stderr', eci, c_type='FILE*',
++c_stderr = rffi.CExternVariable(FILEP, 'stderr', eci, c_type='FILE *const',
+                                 getter_only=True, declare_as_extern=False)

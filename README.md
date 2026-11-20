@@ -12,6 +12,11 @@ Currently, PyPy is only built for [glibc](https://www.gnu.org/software/libc/)/GN
 
 This repository seeks to make it easy to build PyPy for Alpine Linux.
 
+Note that there are currently [pypy](https://pkgs.alpinelinux.org/package/edge/testing/x86/pypy) and
+[pypy3](https://pkgs.alpinelinux.org/package/edge/testing/x86/pypy3) packages in edge/testing on Alpine Linux,
+which you may prefer over building pypy. For the `pypy3.12` build, for instance, we use the `pypy` package
+in order to skip the boostrapping step that was required for previous versions of the docker build.
+
 ## Docker images
 Docker images are provided for building PyPy:
 
@@ -24,6 +29,9 @@ Docker images are provided for building PyPy:
 
 ## Building
 ### From scratch
+
+Note that, in the `pypy3.12` build, it is no longer necessary to do this bootstrapping step because Alpine Linux has a [pypy package in edge/testing](https://pkgs.alpinelinux.org/package/edge/testing/x86/pypy) that can be used, so you can skip boostrapping and build faster using `pypy2.7`.
+
 PyPy requires a Python implementation in order to build itself. The recommended implementation to use is PyPy itself as it is much faster than standard cPython. But if you don't have a PyPy binary in the first place you'll have to settle for cPython.
 
 The first step is to get the `bootstrap` image which you can either build from source or pull from Docker Hub:

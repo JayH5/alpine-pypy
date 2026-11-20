@@ -12,6 +12,11 @@ Currently, PyPy is only built for [glibc](https://www.gnu.org/software/libc/)/GN
 
 This repository seeks to make it easy to build PyPy for Alpine Linux.
 
+Note that there are currently [pypy](https://pkgs.alpinelinux.org/package/edge/testing/x86/pypy) and
+[pypy3](https://pkgs.alpinelinux.org/package/edge/testing/x86/pypy3) packages in edge/testing on Alpine Linux,
+which you may prefer over building pypy. For the `pypy3.12` build, for instance, we use the `pypy` package
+in order to skip the boostrapping step that was required for previous versions of the docker build.
+
 ## Docker images
 Docker images are provided for building PyPy:
 
@@ -24,6 +29,9 @@ Docker images are provided for building PyPy:
 
 ## Building
 ### From scratch
+
+Note that, in the `pypy3.12` build, it is no longer necessary to do this bootstrapping step because Alpine Linux has a [pypy package in edge/testing](https://pkgs.alpinelinux.org/package/edge/testing/x86/pypy) that can be used, so you can skip boostrapping and build faster using `pypy2.7`.
+
 PyPy requires a Python implementation in order to build itself. The recommended implementation to use is PyPy itself as it is much faster than standard cPython. But if you don't have a PyPy binary in the first place you'll have to settle for cPython.
 
 The first step is to get the `bootstrap` image which you can either build from source or pull from Docker Hub:
@@ -64,3 +72,4 @@ There are a few workarounds for differences between Alpine Linux and the Debian-
 ### Issues when building PyPy for Python 3
 * RPython expects the `stdin`/`stdout`/`stderr` file handles in `stdio.h` of the standard libc to be of type `FILE*`. With musl these are of type `FILE *const` rather (see [this mailing list thread](https://www.openwall.com/lists/musl/2018/02/02/2)). We patch RPython with the correct type.
 * Alpine Linux doesn't include some common time types by default. This seems to be a common problem when compiling code on Alpine: see [here](https://stackoverflow.com/questions/35614923/errors-compiling-mesos-on-alpine-linux) or [here](https://github.com/tesseract-ocr/tesseract/issues/2632). We patch PyPy's "cpyext" module to include `sys/time.h`.
+* [Around pypy3.10-v7.3.18](https://github.com/pypy/pypy/commit/1efdc397661b4ee8da02b68445f29c1d8eeba0ad), RPython started to prefer including libffi as a static library instead of a shared one, but Alpine Linux's libffi.a has some non-pic relocations which are not allowed during shared library compilation when building pypy. We patch RPython to never use the static library and always prefer using the shared library.
